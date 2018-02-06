@@ -1,0 +1,23 @@
+\documentclass[crop, tikz, border=10pt]{standalone}
+%\usetikzlibrary{...}% tikz package already loaded by 'tikz' option
+\usetikzlibrary{matrix}
+\usepackage{color}
+\begin{document}
+\color{white}
+\begin{tikzpicture}[draw=white]
+\tikzset{circle node/.style = {circle, inner sep=1pt, draw, fill=white}}
+\tikzset{edge/.style = {->,> = latex, line width=.5 pt}}
+
+   \foreach \x in {0,1,2,3,4,5}
+    \foreach \y in {0,1,2,3}
+    {
+    \draw (\x,\y) circle (0.3cm);
+    }
+    
+   \draw[yellow,fill=yellow] (3,2) circle (.3cm);    
+    
+\draw[edge] (-1.3,4) -> (5.5, 4) node[midway, above]{\textbf{models}};    
+\draw[edge] (-1,4.3) -> (-1, -.5) node[midway, below, rotate=-90]{\textbf{feature sets}};    
+    
+\end{tikzpicture}
+\end{document}

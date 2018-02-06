@@ -1,0 +1,24 @@
+\documentclass[crop, tikz, border=10pt]{standalone}
+%\usetikzlibrary{...}% tikz package already loaded by 'tikz' option
+\usetikzlibrary{matrix}
+\usepackage{color}
+\begin{document}
+\color{white}
+\begin{tikzpicture}[draw=white]
+%\tikzset{circle node/.style = {circle, inner sep=1pt, draw, fill=white}}
+\tikzset{edge/.style = {->,> = latex, line width=2 pt}}
+
+\path[draw=white, line width=2, dashed] (0,.5) -- (4, .5) node[midway, above]{\Large \textbf{test group}};           
+\path[draw=white, line width=2] (0,0) -- (4, 0) node[midway, below]{\Large \textbf {control group}};   
+\draw[edge] (2, 0) -> (2, .5) node[midway, right]{\Large \textbf{$+1\,\%$}};   
+
+\draw[edge] (5, 1) -> (7., 1) node[midway, right]{};
+
+\color{yellow}
+\begin{scope}[xshift = 8 cm]
+\path[draw=yellow, line width=2, dashed] (0,10) -- (4, 10) node[midway, above]{\Large \textbf{test group}};           
+\path[draw=yellow, line width=2] (0,0) -- (4, 0) node[midway, below]{\Large \textbf {control group}};      
+\draw[edge, color=yellow] (2, 0) -> (2, 10) node[midway, right]{\Large \textbf{$+20\,\%$}};   
+\end{scope}    
+\end{tikzpicture}
+\end{document}

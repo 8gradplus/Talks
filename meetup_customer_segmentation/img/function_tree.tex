@@ -1,0 +1,53 @@
+\documentclass[crop, tikz, border=0pt]{standalone}
+%\usetikzlibrary{...}% tikz package already loaded by 'tikz' option
+\usetikzlibrary{matrix}
+\usepackage{color}
+\begin{document}
+\color{white}
+\begin{tikzpicture}[draw=white]
+\tikzset{vertex/.style = {shape=circle,draw,minimum size=.05em}}
+\tikzset{edge/.style = {->,> = latex, line width=.3}}
+
+% binomial beta directed graph
+\begin{scope}[xscale=2]
+% vertices
+\node[vertex] (o) at  (0,0) {};
+\node[vertex] (a1) at  (1,1.5) {};
+\node[vertex] (a2) at  (1,-1.5) {} ;
+\node[vertex] (a3) at  (1, 0) {} ;
+\node[vertex] (b31) at  (2,.5) {} ;
+\node[vertex] (b32) at (2,0) {};
+\node[vertex] (b33) at (2,-.5) {};
+\node[vertex] (c1) at (3,.4) {} ;
+\node[vertex] (c2) at (3,0) {};
+\node[vertex] (c3) at (3,-.4) {};
+\draw (4., 0 ) node[right] {$\vdots$};
+%edges
+\draw[edge] (o) -- (a1) node[midway]{\tiny $f_1$};
+\draw[edge] (o) -- (a2) node[midway]{\tiny $f_2$};
+\draw[edge] (o) -- (a3) node[midway]{\tiny $f_3$};
+\draw[edge] (a3) -- (b31) node[midway]{\tiny $g_1$};
+\draw[edge] (a3) -- (b32) node[midway]{\tiny $g_2$};
+\draw[edge] (a3) -- (b33) node[midway]{\tiny $g_3$};
+\draw[edge] (b32) -- (c1) node[midway]{\tiny $h_1$};
+\draw[edge] (b32) -- (c2) node[midway]{\tiny $h_2$};
+\draw[edge] (b32) -- (c3) node[midway]{\tiny $h_3$};
+
+\draw[edge] (a1) to (2, 1.8) ;
+\draw[edge] (a1) -- (2, 1.5) node[right]{$\vdots$};
+\draw[edge] (a1) to (2, 1.2);
+
+
+\draw[edge] (a2) to (2, -1.8) ;
+\draw[edge] (a2) -- (2, -1.5) node[right]{$\vdots$};
+\draw[edge] (a2) to (2, -1.2);
+
+
+\draw[edge] (c2) to (4, .3) ;
+\draw[edge] (c2) to (4, 0) ;
+\draw[edge] (c2) to (4, -.3);
+\end{scope}
+
+\end{tikzpicture}
+\end{document}
+
