@@ -1,3 +1,3 @@
 # Talks
-* use rawgit. e.g.,  https://cdn.rawgit.com/8gradplus/Talks/55297f10/meetup_customer_segmentation/index.html#/
+* use rawgit https://rawgit.com/ and paste relevant html link
 * or clone and open index.html with any browser
