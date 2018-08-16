@@ -1,0 +1,140 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Decision Theory</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/blood.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+                <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
+                    <script type="text/template">
+                        ### Excurs decision theory
+
+                        * <font color="yellow">**AIM: Make decisions under uncertainty**</font>
+                        * Data Science gives you probabilities
+                        * **But:** we want to make decisions
+                        * $\rightarrow$ need to consider benefits, risks
+                        * In terms of $$$
+
+                        ---
+
+                        ### Utility function
+                        * Define
+                        \begin{align}U(d, x)\end{align}
+                        * With decision $d$,  random variables $x$
+                        * Compute subjective expected utility
+                        \begin{align} \tilde U(d) = \langle U(d, x)\rangle _{p(x)}\end{align}
+                        * Find decision that maximizes $\tilde U$
+                        \begin{align} \text{argmax}_d \tilde U(d) \end{align}
+
+                        ---
+
+                        ### So we need 2 things
+                        * A model
+                        * A utility function
+
+                        ---
+
+                        ### At what price shall I sell my Iphone?
+
+                        ---
+
+                        #### The Problem
+                        * You have an Iphone
+                        * Year $2014$
+                        * Not scratched
+                        * For what price do you put it on Ebay?
+
+                        ---
+
+                        #### Utility function
+                        \begin{align}
+                        U(price, bought=1) = price
+                        \end{align}
+                        \begin{align}
+                        U(price, bought=0) = 0
+                        \end{align}
+
+                        * decision: $price$
+                        * random variable: $bought$
+
+                        ---
+
+                        #### Training Data
+
+                        | price | scratched | sold | year |
+                        | ----- |:---------:|:----:| ----:|
+                        | 50	| 0       	| 1	   | 2014 |
+                        | 70	| 0	        | 1	   | 2015 |
+                        | 40	| 1	        | 0	   | 2010 |
+                        | 100	| 0	        | 0	   | 2014 |
+                        | 90	| 0	        | 1	   | 2015 |
+                        | 100	| 0	        | 1	   | 2016 |
+
+                        ---
+
+
+                        ### Shall I take the bus?
+                        * Time is money!
+                        * You need to decide: take the bus or bike
+                        \begin{align}
+                        U(d=bus, t) = 10 + 3 + t
+                        \end{align}
+                        \begin{align}
+                        U(d=bike, t) = 20
+                        \end{align}
+
+
+
+
+                    </script>
+                </section>
+
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				math: {
+		            mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+		            config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+	            },
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
