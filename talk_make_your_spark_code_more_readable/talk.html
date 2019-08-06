@@ -25,6 +25,11 @@
 
 
 
+
+
+
+
+
     </script>
 </head>
 <body>
@@ -33,9 +38,11 @@
 
         <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
             <script type="text/template">
-                ### Spark
+                ### Make your Spark code more readable
 
-                <font color="yellow">**Make it more readable**</font>
+                Based on [this](https://medium.com/@mrpowers/chaining-custom-dataframe-transformations-in-spark-a39e315f903c)  Blog Post by [Matthew Power](https://medium.com/@mrpowers)
+
+                and the advice of Markus Rother / Qudosoft
 
                 ---
 
@@ -73,13 +80,17 @@
                 ---
 
                 ###### This yields
-                <pre><code>val val_1 = f1(df)
+                <pre><code>import myfunctions._
+
+                val val_1 = f1(df)
                 val val_2 = f2(val_1, param)
                 ...
                 val val_n = fn(val_n-1)
                 </code></pre>
                 or
-                <pre><code>fn(...f2(f1(df), param))
+                <pre><code>import myfunctions._
+
+                fn(...f2(f1(df), param))
                 </code></pre>
 
                 * In practice a combination of both
@@ -91,11 +102,11 @@
 
                 #### Hear your masters voice
                 1. Write down what you want to see
-                <pre><code>df.f1
-                     .f2(param)
-                     ....
-                     .fn
-                </code></pre>
+<pre><code>df.f1
+     .f2(param)
+     ....
+     .fn
+</code></pre>
                     * feels like spark
                     * modular, more readable
 
@@ -103,34 +114,114 @@
 
                 ---
 
-                #### Monkey Patching
+                #### Implementation 1:  via implicit class
+
+                <pre><code>  package object myfunctions {
+
+                    implicit class DataFrameImplicits(df: DataFrame) {
+
+      def add_column = {df.withColumn("foo", lit("bar")}
+
+      def f1(): DataFrame = ???
+
+      def f1(param: String): DataFrame = ???
+
+      ....
+   }
+  }
+                </code></pre>
 
                 ---
 
-                #### The transform() method
-                <pre><code>def transform[U](t: Dataset[T] => Dataset[U]): Dataset[U]</code></pre>
+                #### Some critique
+                * This is also called "Monkey Patching"
 
-                * Swallows a function, e.g.
+
+                <p><font color="yellow">_Changing base classes is known as monkey patching and is a delightful feature
+                    of
+                    Ruby but can be perilous in untutored hands._ — Sandi Metz</font></p>
+
+                * Need to be familiar / be able to copy implicit class
+
+                ---
+
+                #### Implementation 2: via Sparks transform()
+                <pre><code>
+                    def transform[U](t: Dataset[T] => Dataset[U]): Dataset[U]
+
+                </code></pre>
+
+                * Swallows a function
                 * $f: df \rightarrow df$
-                * Include parameters via currying
+
+                <font color="yellow">**But what about function parameters?**</font>
+                - $\rightarrow$ Include parameters via <font color="yellow">**currying!**</font>
+                - In python this is also partial function
+                - Super easy in scala!
 
                 ---
 
-                #### Example
+                #### Small adaption in code
+
+                <pre><code>package object myfunctions {
+
+  def f1(df: DataFrame): DataFrame = ???
+
+  def f2(param: String)(df: DataFrame): DataFrame = ???
+
+  ...
+
+}
+</code></pre>
+
+                mind the gap
+                <pre><code style="text-decoration:line-through">def f2(df: DataFrame, param: String): DataFrame = ???</code></pre>
+                <font color="yellow">$\rightarrow$ just set brackets appropriately</font>
 
                 ---
 
-                #### Discussion
-                * Testable functions
-                * Modular code
+                #### Result with transform()
+                <pre><code>df.transform(f1)
+  .transform(f2(param))
+  ....
+  .transform(fn)
+</code></pre>
+                vs with implicit classes
+                <pre><code>df.f1
+  .f2(param)
+  ....
+  .fn
+</code></pre>
+                * Both is nice (testable, readable, modular)
+                * transform is spark native
+
 
                 ---
 
-                #### Monkey Patching
+                #### Hear the masters voice (example)
+                <pre><code>readCSV(READ_OPTIONS)
+  .transform(expand_fields)
+  .transform(add_article_number)
+  .transform(add_filename(file))
+  .transform(add_timestamps(file))
+  .write_parquet(table_name)
+</code></pre>
+                * Combination of both
+                * Write via implicit class as it does not spit back a DataFrame Object
+                * <font color="yellow">Canonical extract-read-transform (ETL) Pattern</font>
 
                 ---
 
-                #### Hear the masters voice 2
+                #### Summary
+                * Improve the quality of your code
+                    * <font color="yellow">transform()</font>
+                    * implicit class
+                *  <font color="yellow">Currying</font> is nice and easy in scala
+                    * Disentangle function parameters from variables
+                    * Unified usage of functions
+                * Works in Python too (callable classes)!
+
+
 
 
             </script>
@@ -162,6 +253,11 @@
 					{ src: '../reveal/plugin/math/math.js', async: true }
 				]
 			});
+
+
+
+
+
 
 
 
