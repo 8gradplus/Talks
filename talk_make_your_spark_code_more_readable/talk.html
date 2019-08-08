@@ -75,6 +75,7 @@
 </code></pre>
 
                 * Modules in scala via package object
+                * Corresponds to Python modules
                 * Testable
 
                 ---
@@ -94,7 +95,6 @@
                 </code></pre>
 
                 * In practice a combination of both
-                * Incoherent treatment of variables and parameters
                 * Not very modular or readable
 
 
@@ -118,18 +118,21 @@
 
                 <pre><code>  package object myfunctions {
 
-                    implicit class DataFrameImplicits(df: DataFrame) {
+                    implicit class MyDataFrameImplicits(df: DataFrame) {
 
       def add_column = {df.withColumn("foo", lit("bar")}
 
       def f1(): DataFrame = ???
 
-      def f1(param: String): DataFrame = ???
+      def f2(param: String): DataFrame = ???
 
       ....
    }
   }
                 </code></pre>
+                
+                * Return type of each function _must_ be DataFrame
+                * In order to pipeline
 
                 ---
 
