@@ -1,0 +1,272 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>hbar</title>
+
+    <link rel="stylesheet" href="../reveal/css/reveal.css">
+    <link rel="stylesheet" href="../reveal/css/theme/white.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal/css/print/pdf.css' : '../reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+
+
+
+
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+
+        <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
+            <script type="text/template">
+                ## A gentle introduction to data science
+
+                Viktor Atalla (qudosoft / dataqube)
+
+                github: 8gradplus
+
+                ---
+
+                ## Some basics
+
+                ---
+
+                ### Definitions
+                Make predictions based on past
+                * Data Engineering
+                * Data Analysis
+                * Data Science, machine learning, AI
+
+
+                ... kind of bullshit bingo
+
+                ---
+
+                ### Think first!
+                - Understand the business objective <!-- .element: class="fragment" data-fragment-index="1" -->
+                - Define a KPI you want to improve <!-- .element: class="fragment" data-fragment-index="1" -->
+                - Translate as data science problem <!-- .element: class="fragment" data-fragment-index="2" -->
+                - Does this model solve your problem? <!-- .element: class="fragment" data-fragment-index="2" -->
+                - Can this model be operationalized? <!-- .element: class="fragment" data-fragment-index="2" -->
+                - Maybe start project <!-- .element: class="fragment" data-fragment-index="3" -->
+
+                ---
+
+                ### Workflow
+                1. Gather Data
+                2. Understand data
+                3. Descriptive analysis
+                4. Aggregate Data (Feature Construction)
+                5. Build model
+                6. Test set error
+                7. Deploy + A/B Testing (KPI)
+                8. **<font color="#fd5000"> Goto 1.</font>** <!-- .element: class="fragment" data-fragment-index="1" -->
+
+                ---
+
+                ### Mind the gap
+                * Coursera et al. is really great, <font color="#fd5000"> but you will spend a lot of time on</font>
+                    - Understanding the data
+                    - Data aggregation + feature engineering
+                    - Model pre-processing
+                * Do as your PO says but not what! <!-- .element: class="fragment" data-fragment-index="1" -->
+                    * Don't get trapped in the analytics loop <!-- .element: class="fragment" data-fragment-index="1" -->
+                    * Look at feature importance instead <!-- .element: class="fragment" data-fragment-index="1" -->
+                * Good old Pareto! <!-- .element: class="fragment" data-fragment-index="2" -->
+
+
+
+                ---
+
+                ### Mindset
+                * ** Don't despair! **
+                * Work in interdisciplinary teams
+                * Embrace uncertainty
+                * Embrace inconsistencies
+                * Communicate!
+
+                ---
+
+                ## Some Fuck ups
+
+                ---
+
+                <p><font color="#fd5000">_My model is awesome, it has 95% accuracy!_ — anonymous data scientist </font>
+                </p>
+
+                ---
+
+                <p><font color="#fd5000">_I want to know which customer segments we have_ — anonymous
+                    CEO </font></p>
+
+                ---
+
+                <p><font color="#fd5000">_Go ahead and write your crappy Python code, dear data scientist.
+                    Once you know what you want we'll implement it in a proper programming language_ — anonymous
+                    dev </font></p>
+
+
+                ---
+
+
+                <p><font color="#fd5000">_Let's first get all the data and put it in a datalake.
+                    After that we will start with machine learning_ — anonymous consultant </font></p>
+
+                ---
+
+                <p><font color="#fd5000">_Overall your recos looks nice. However, recommending a sideboard to a doll
+                    seems odd_ — anonymous sales manager </font></p>
+
+                ---
+
+                ## Tooling
+
+                ---
+
+                ### Technical
+
+                <p>
+                <center>
+                    <img src="img/python.png" height="120px"
+                         style="padding:.5em; margin:none; background:none;  border:none; box-shadow:none; padding-bottom:0"/>
+                    <img src="img/sklearn.png" height="120px"
+                         style="padding:.5em; margin:none; background:none;  border:none; box-shadow:none; padding-bottom:0"/>
+                    <img src="img/keras.png" height="120px"
+                         style="padding:.5em; margin:none; background:none;  border:none; box-shadow:none; padding-bottom:0"/>
+                    <img src="img/tensorflow.png" width="120px"
+                         style="padding:.5em; margin:none; background:none;  border:none; box-shadow:none; padding-bottom:0"/>
+                    <img src="img/flask.png" height="120px"
+                         style="padding:.5em; margin:none; background:none;  border:none; box-shadow:none; padding-bottom:0"/>
+                    <img src="img/spark.png" height="120px"
+                         style="padding:.5em; margin:none; background:none;  border:none; box-shadow:none; padding-bottom:0"/>
+                    <img src="img/kafka.png" height="120px"
+                         style="padding:.5em; margin:none; background:none;  border:none; box-shadow:none; padding-bottom:0"/>
+                    <img src="img/pymc3.png" height="120px"
+                         style="padding:.5em; margin:none; background:none;  border:none; box-shadow:none; padding-bottom:0"/>
+
+
+                </center></p>
+
+                ---
+
+                ### Production
+                * Be modular
+                * Make sure you can swap models
+                * Have a clear data science / dev interface
+                * Docker + Cloud
+
+                ---
+
+                ### Excursion
+                * <font color="#fd5000">Training vs. prediction phase</font>
+                    - Different time scales
+                    - Consider it in your architecture
+                *  <font color="#fd5000">Interpretable vs non-interpretable models</font>
+                *  <font color="#fd5000">Supervised vs. unsupervised learning</font>
+
+                ---
+
+                ### Tools  <font color="#fd5000">article recommendation</font>
+                * Various species of collaborative filtering
+                * Latent Dirichlet allocation
+                * Probabilistic latent semantic analysis
+                * ...
+
+                ---
+
+                ### Tools <font color="#fd5000">churn reduction</font>
+                * As supervised learning problem
+                    - Neural networks
+                    - Tree based methods
+                    - Logistic regression
+                * Customer Live time values <!-- .element: class="fragment" data-fragment-index="1" -->
+                    - Contractual vs non-contractual <!-- .element: class="fragment" data-fragment-index="1" -->
+                    - See e.g., Fader works <!-- .element: class="fragment" data-fragment-index="1" -->
+                * Decision theory <!-- .element: class="fragment" data-fragment-index="2" -->
+                    - Put a $$$ behind your decision <!-- .element: class="fragment" data-fragment-index="2" -->
+
+                ---
+
+                ### Summary
+                * Get started with the simplest use case
+                * Love the problem not the solution
+                * Build-measure-learn (lean startup)
+                * Personal opinion: you don't see good data scientist
+
+
+
+
+
+
+            </script>
+        </section>
+
+
+    </div>
+</div>
+
+<script src="../reveal/lib/js/head.min.js"></script>
+<script src="../reveal/js/reveal.js"></script>
+
+<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				math: {
+		            mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+		            config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+	            },
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal/plugin/markdown/marked.js' },
+					{ src: '../reveal/plugin/markdown/markdown.js' },
+					{ src: '../reveal/plugin/notes/notes.js', async: true },
+					{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal/plugin/math/math.js', async: true }
+				]
+			});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
