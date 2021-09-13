@@ -1,0 +1,30 @@
+
+\documentclass[crop, tikz, border=0pt]{standalone}
+\usetikzlibrary{matrix}
+\usetikzlibrary{patterns}
+\usepackage{varwidth}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usetikzlibrary{calc}
+
+\begin{document}
+
+\def \f {1.5}
+
+\begin{tikzpicture}[draw=yellow]
+
+\tikzset{edge/.style = {->,> = latex, line width=.5 pt}}
+
+
+\draw [pattern=north east lines, pattern color=yellow] ({\f*cos(0)}, {\f*sin(0)}) circle (0.3cm) node[right, color=yellow, xshift=1em] {Training samples};
+\draw [pattern=north east lines, pattern color=yellow]  ({\f*cos(90)}, {\f*sin(90)}) circle (0.3cm) node[above, color=yellow, yshift=1em] {Aggregate data};
+\draw [pattern=north east lines, pattern color=yellow]  ({\f*cos(180)}, {\f*sin(180)}) circle (0.3cm) node[left, color=yellow, xshift=-1em] {Evaluate};
+\draw [pattern=north east lines, pattern color=yellow]  ({\f*cos(270)}, {\f*sin(270)}) circle (0.3cm) node[below, color=yellow, yshift=-1em] {Train model};
+
+\draw [<-]  ($(0,0) + (12.:\f)$)  arc  (12.:78.5:\f); 
+\draw [<-]  ($(0,0) + (102.:\f)$)  arc  (102.:168.5:\f);
+\draw [<-]   ($(0,0) + (192.:\f)$)  arc  (192.:258.5:\f);
+\draw [<-]  ($(0,0) + (282.:\f)$)  arc  (282.:348.5:\f);
+\end{tikzpicture}
+\end{document}
